@@ -32,6 +32,7 @@ def main(fund_ids):
     fund_names = {
         120251: 'ICICI Prudential Equity & Debt Direct Growth Fund',
         122639: 'Parag Parikh Flexi Cap Direct Growth Fund',
+        119062: 'HDFC Hybrid Equity Fund',
         101349: 'Nifty 50 Index Fund',
         120684: 'Nifty Next 50 Index Fund'
     }
@@ -71,5 +72,5 @@ def main(fund_ids):
     print("Saved analytics to data/analytics.csv")
 
 if __name__ == "__main__":
-    FUND_IDS = [120251, 122639, 101349, 120684]  # ICICI Prudential Equity & Debt Direct Growth Fund, Parag Parikh Flexi Cap Direct Growth Fund, Nifty 50 Index Fund, Nifty Next 50 Index Fund
+    FUND_IDS = [120251, 122639, 119062, 101349, 120684]  # ICICI Prudential Equity & Debt Direct Growth Fund, Parag Parikh Flexi Cap Direct Growth Fund, HDFC Hybrid Equity Fund, Nifty 50 Index Fund, Nifty Next 50 Index Fund
     main(FUND_IDS)

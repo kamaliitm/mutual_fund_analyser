@@ -10,6 +10,7 @@ MFAPI_BASE = "https://api.mfapi.in/mf/"
 FUND_IDS = [
     120251,  # ICICI Prudential Equity & Debt Direct Growth Fund
     122639,  # Parag Parikh Flexi Cap Direct Growth Fund
+    119062,  # HDFC Hybrid Equity Fund
     101349,  # Nifty 50 Index Fund
     120684,  # Nifty Next 50 Index Fund
 ]
