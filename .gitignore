@@ -1,0 +1,10 @@
+# Ignore generated data and charts
+/data/
+/charts/
+
+# Ignore Python virtual environment
+.venv/
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
