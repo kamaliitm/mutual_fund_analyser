@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 from datetime import datetime
+import os
 
 # MFAPI endpoint for Indian mutual funds
 MFAPI_BASE = "https://api.mfapi.in/mf/"
@@ -29,7 +30,28 @@ def fetch_nav(fund_id):
     return df[['date', 'nav']]
 
 if __name__ == "__main__":
-    for fund_id in FUND_IDS:
+    funds_to_update = [120251, 122639]  # ICICI and Parag
+    
+    for fund_id in funds_to_update:
+        csv_path = f"data/nav_{fund_id}.csv"
+        last_date = None
+        if os.path.exists(csv_path):
+            existing_df = pd.read_csv(csv_path, parse_dates=['date'])
+            if not existing_df.empty:
+                last_date = existing_df['date'].max()
+        
         df = fetch_nav(fund_id)
-        df.to_csv(f"data/nav_{fund_id}.csv", index=False)
-        print(f"Saved NAV data for fund {fund_id}.")
+        
+        if last_date is not None:
+            df = df[df['date'] > last_date]
+        
+        if not df.empty:
+            if os.path.exists(csv_path):
+                existing_df = pd.read_csv(csv_path, parse_dates=['date'])
+                combined_df = pd.concat([existing_df, df]).drop_duplicates(subset='date').sort_values('date')
+                combined_df.to_csv(csv_path, index=False)
+            else:
+                df.to_csv(csv_path, index=False)
+            print(f"Updated NAV data for fund {fund_id} with {len(df)} new entries.")
+        else:
+            print(f"No new data for fund {fund_id}.")
